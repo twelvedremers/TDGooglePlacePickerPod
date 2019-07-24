@@ -13,7 +13,7 @@
         <!--Selecciona una ubicacion-->
         <scene sceneID="mFu-GR-c8t">
             <objects>
-                <viewController storyboardIdentifier="TDGooglePlacePickerMapViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qfh-gh-iCs" customClass="TDGooglePlacePickerMapViewController" customModule="TDGooglePlacePickerPod" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TDGooglePlacePickerMapViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qfh-gh-iCs" customClass="TDGooglePlacePickerMapViewController" customModule="TDGooglePlacePickerPod" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zUB-uR-yCf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,6 +43,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cug-4b-HtM">
                                 <rect key="frame" x="0.0" y="772.5" width="414" height="0.0"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="60"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nearCell" textLabel="0bG-Cf-6xW" detailTextLabel="bsc-k8-SSX" imageView="PBX-TG-D13" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="3X1-5m-qbH">
                                         <rect key="frame" x="0.0" y="28" width="414" height="60"/>
@@ -114,7 +115,7 @@
                                 <color key="backgroundColor" red="0.72156862749999995" green="0.1647058824" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="qaP-md-4yG">
-                                <rect key="frame" x="189" y="430" width="37" height="37"/>
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
                                 <color key="color" red="0.72156862749999995" green="0.1647058824" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                         </subviews>

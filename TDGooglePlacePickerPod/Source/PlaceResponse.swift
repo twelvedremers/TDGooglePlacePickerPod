@@ -8,7 +8,7 @@
 
 import Foundation
 import GooglePlaces
-import GoogleMaps
+import SwiftyJSON
 
 public struct PlaceResponse {
     var placeId: String
@@ -39,7 +39,31 @@ public struct PlaceResponse {
         }
         self.placeId = placeId
         self.coordinate = place.coordinate
-        self.name = place.name ?? place.name ?? "\(place.coordinate.latitude) - \(place.coordinate.longitude)"
+        self.name = place.name ?? place.formattedAddress ?? "\(place.coordinate.latitude) - \(place.coordinate.longitude)"
         self.formatedAdress = place.formattedAddress ?? place.name ?? "\(place.coordinate.latitude) - \(place.coordinate.longitude)"
+    }
+    
+    init?(nearPlaceJson dictionary: [String: Any]) {
+        let json = JSON(dictionary)
+        guard let placeId = json["place_id"].string, let latitude = json["geometry"]["location"]["lat"].double, let longitude = json["geometry"]["location"]["lng"].double  else {
+            return nil
+        }
+        self.placeId = placeId
+        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        self.name = json["name"].string ?? json["vicinity"].string ?? "\(latitude) - \(longitude)"
+        self.formatedAdress = json["vicinity"].string ?? json["name"].string ?? "\(latitude) - \(longitude)"
+    }
+    
+    init?(reverseGeocodeJson dictionary: [String: Any]) {
+        let json = JSON(dictionary)
+        
+        guard let placeId = json["place_id"].string, let latitude = json["geometry"]["location"]["lat"].double, let longitude = json["geometry"]["location"]["lng"].double  else {
+            return nil
+        }
+        
+        self.placeId = placeId
+        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        self.name = json["display_name"].string ?? json["formatted_address"].string ?? "\(latitude) - \(longitude)"
+        self.formatedAdress = json["formatted_address"].string ?? json["display_name"].string ?? "\(latitude) - \(longitude)"
     }
 }

@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint TDGooglePlacePicker.podspec' to ensure this is a
+#  Be sure to run `pod spec lint TDGooglePlacePickerPod.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see https://guides.cocoapods.org/syntax/podspec.html
@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
 
   spec.name         = "TDGooglePlacePickerPod"
   spec.version      = "0.0.1"
-  spec.summary      = "Picker used for replace Google Place picker for >3.0"
+  spec.summary      = "Pod para sustituir el GooglePlacePicker desde la version 3.0"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,10 +25,10 @@ Pod::Spec.new do |spec|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
+Pod para sustituir el GooglePlacePicker desde la version 3.0, implementa la ultima version del api de google
                    DESC
 
-  spec.homepage     = "http://EXAMPLE/TDGooglePlacePicker"
-  # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
+  spec.homepage     = "http://EXAMPLE/TDGooglePlacePickerPod"
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -39,8 +39,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.license      = "MIT"
-  # spec.license      = { :type => "MIT", :file => "FILE_LICENSE" }
-
+ 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -53,24 +52,15 @@ Pod::Spec.new do |spec|
   #
 
   spec.author             = { "jhonger delgado" => "djhonger2@gmail.com" }
-  # Or just: spec.author    = "jhonger delgado"
-  # spec.authors            = { "jhonger delgado" => "djhonger2@gmail.com" }
-  # spec.social_media_url   = "https://twitter.com/jhonger delgado"
 
+ 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  If this Pod runs only on iOS or OS X, then specify the platform and
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  # spec.platform     = :ios
-  # spec.platform     = :ios, "5.0"
-
-  #  When using multiple platforms
-  # spec.ios.deployment_target = "5.0"
-  # spec.osx.deployment_target = "10.7"
-  # spec.watchos.deployment_target = "2.0"
-  # spec.tvos.deployment_target = "9.0"
+  spec.platform     = :ios, "10.0"
 
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -90,7 +80,7 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "Classes", "Classes/**/*.{h,m}"
+  spec.source_files  = "TDGooglePlacePicker/Source/**/*.swift"
   spec.exclude_files = "Classes/Exclude"
 
   # spec.public_header_files = "Classes/**/*.h"

@@ -6,7 +6,6 @@
 //  Copyright © 2019 jhonger delgado. All rights reserved.
 //
 
-import UIKit
 import GooglePlaces
 import GoogleMaps
 
@@ -52,6 +51,7 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
     }
     
     func loadMap(){
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0);
         mapView?.setMinZoom(10, maxZoom: 18)
         if self.pickerConfig.zoom < mapView.minZoom{
             pickerConfig.zoom = mapView.minZoom
@@ -72,6 +72,7 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
         TDGooglePlacePickerService.getCoordenate(succesful: { coordenate in
             let camera = GMSCameraPosition.camera(withLatitude: coordenate.latitude , longitude: coordenate.longitude, zoom: self.pickerConfig.zoom)
             self.mapView?.animate(to: camera)
+            self.tapLocationEvent(coordenate)
             self.loadingView.stopAnimating()
         }){ _ in }
     }
@@ -82,12 +83,29 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
         nearHeaderLabel.text = pickerConfig.nearHeadertextTitle
     }
     
+    private func formatTitle(with place: PlaceResponse) -> NSAttributedString{
+        let titleFontAtributtes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)]
+        let subtitleFontAtributtes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
+        let attributedString = NSMutableAttributedString()
+        
+        if place.name != place.formatedAdress {
+            let title = NSAttributedString(string: place.name, attributes: titleFontAtributtes)
+            attributedString.append(title)
+            let subtitle = NSAttributedString(string: "\n" + place.formatedAdress, attributes: subtitleFontAtributtes)
+            attributedString.append(subtitle)
+        } else {
+            let title = NSAttributedString(string: place.name, attributes: subtitleFontAtributtes)
+            attributedString.append(title)
+        }
+        return attributedString
+    }
+    
     func updateSelectedPlace(){
         if let place = selectedPlace{
             searchButton.isEnabled = true
             searchButton.backgroundColor = pickerConfig.colorTitleBackgroundButton
             bottomSearchButtonView.backgroundColor = pickerConfig.colorTitleBackgroundButton
-            selectedPlaceTextLabel.text = place.formatedAdress
+            selectedPlaceTextLabel.attributedText = formatTitle(with: place)
             searchButton.setTitle(pickerConfig.titleSerchTextButton, for: .normal)
         } else {
             searchButton.isEnabled = false
@@ -118,11 +136,11 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
         // Specify the place data types to return.
-        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.all.rawValue))!
+          let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) | UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.coordinate.rawValue) | UInt(GMSPlaceField.formattedAddress.rawValue))!
         autocompleteController.placeFields = fields
         // Specify a filter.
         let filter = GMSAutocompleteFilter()
-        filter.type = .address
+        filter.type = .noFilter
         filter.country = pickerConfig.country
         autocompleteController.autocompleteFilter = filter
         // Display the autocomplete view controller.
@@ -130,34 +148,30 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
     }
     
     
-    fileprivate func addMarker(_ coordenate: CLLocationCoordinate2D, name: String){
+    fileprivate func addMarker(_ coordinate: CLLocationCoordinate2D?, name: String?){
         mapView.clear()
+        guard let name = name, let coordinate = coordinate else {
+            return
+        }
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
-        marker.position = coordenate
+        marker.position = coordinate
         marker.title = name
         marker.map = mapView
     }
     
-    fileprivate func tapLocationEvent(_ coordenate: CLLocationCoordinate2D){
-        let camera = GMSCameraPosition.camera(withLatitude: coordenate.latitude , longitude: coordenate.longitude, zoom: self.pickerConfig.zoom)
+    fileprivate func tapLocationEvent(_ coordinate: CLLocationCoordinate2D){
+        let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude , longitude: coordinate.longitude, zoom: self.pickerConfig.zoom)
         self.mapView?.animate(to: camera)
-        self.addMarker(coordenate, name: "-")
+        self.addMarker(coordinate, name: "-")
         if pickerConfig.seeNearbyPlace{
-            seeNearbyplaces(from: coordenate)
+            seeNearbyplaces(from: coordinate)
         }
         loadingView.startAnimating()
-        TDGooglePlacePickerService.getLocationName(with: coordenate) { response in
-            DispatchQueue.main.sync {
-                guard let response = response else {
-                    self.selectedPlaceTextLabel.text = nil
-                    return
-                }
-                self.selectedPlaceTextLabel.text = response.name
-                self.selectedPlace = response
-                self.addMarker(response.coordinate, name: response.name)
-                self.loadingView.stopAnimating()
-            }
+        TDGooglePlacePickerService.getLocationName(with: coordinate) { response in
+            self.selectedPlace = response
+            self.addMarker(response?.coordinate, name: response?.name)
+            self.loadingView.stopAnimating()
         }
     }
     
@@ -177,8 +191,8 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
 extension TDGooglePlacePickerMapViewController: GMSMapViewDelegate{
     
     public func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
-        TDGooglePlacePickerService.getCoordenate(succesful: { coordenate in
-            let camera = GMSCameraPosition.camera(withLatitude: coordenate.latitude , longitude: coordenate.longitude, zoom: self.pickerConfig.zoom)
+        TDGooglePlacePickerService.getCoordenate(succesful: { coordinate in
+            let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude , longitude: coordinate.longitude, zoom: self.pickerConfig.zoom)
             self.mapView?.animate(to: camera)
         }){ _ in }
         return false
@@ -201,7 +215,6 @@ extension TDGooglePlacePickerMapViewController: GMSMapViewDelegate{
     
 }
 
-
 // MARK: - Seccion del buscador
 extension TDGooglePlacePickerMapViewController: GMSAutocompleteViewControllerDelegate {
     
@@ -210,6 +223,7 @@ extension TDGooglePlacePickerMapViewController: GMSAutocompleteViewControllerDel
         let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude , longitude: place.coordinate.longitude, zoom: pickerConfig.zoom)
         mapView?.animate(to: camera)
         selectedPlace = PlaceResponse(place: place)
+        addMarker(place.coordinate, name: place.name)
         navigationController?.popViewController(animated: true)
     }
     
@@ -243,14 +257,13 @@ extension TDGooglePlacePickerMapViewController{
             return
         }
         self.distanceBetweenHeaderButton.constant = sizeOfCell *  CGFloat(5)
-        DispatchQueue.main.sync {
-            UIView.animate(withDuration: 0.8, animations: {
-                self.view.layoutIfNeeded()
-            }, completion: { _ in
-                self.isNearMenuOpen = true
-                self.tableView.reloadData()
-            })
-        }
+        UIView.animate(withDuration: 0.8, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: { _ in
+            self.isNearMenuOpen = true
+            self.tableView.reloadData()
+        })
+        
     }
     
     func closeTableView(){
@@ -270,12 +283,12 @@ extension TDGooglePlacePickerMapViewController{
 // MARK: - UITableViewDelegate @ Evento al seleccionar una celda
 extension TDGooglePlacePickerMapViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let place = nearPlaceInCoordenate[indexPath.count]
+        let place = nearPlaceInCoordenate[indexPath.row]
         selectedPlace = place
         let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude , longitude: place.coordinate.longitude, zoom: pickerConfig.zoom)
         mapView?.animate(to: camera)
+        addMarker(place.coordinate, name: place.name)
     }
-
 }
 
 // MARK: - UITableViewDataSource @ Evento del datasource
@@ -290,7 +303,7 @@ extension TDGooglePlacePickerMapViewController: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "nearCell", for: indexPath)
-        let place = nearPlaceInCoordenate[indexPath.count]
+        let place = nearPlaceInCoordenate[indexPath.row]
         cell.textLabel?.text = place.name
         cell.detailTextLabel?.text = place.formatedAdress
         return cell

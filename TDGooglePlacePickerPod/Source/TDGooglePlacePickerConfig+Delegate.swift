@@ -6,8 +6,8 @@
 //  Copyright © 2019 jhonger delgado. All rights reserved.
 //
 
-import GooglePlaces
-import GoogleMaps
+import UIKit
+import CoreLocation
 
 // delegate principal desde vista A al picker
 public protocol TDGooglePlacePickerViewControllerDelegate {
