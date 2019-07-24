@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "TDGooglePlacePickerPod"
-  spec.version      = "0.0.1"
+  spec.version      = "0.2.0"
   spec.summary      = "Pod para sustituir el GooglePlacePicker desde la version 3.0"
 
   # This description is used to generate tags and improve search results.
@@ -94,11 +94,7 @@ Pod para sustituir el GooglePlacePicker desde la version 3.0, implementa la ulti
   #  non-essential files like tests, examples and documentation.
   #
 
-  # spec.resource  = "icon.png"
-  # spec.resources = "Resources/*.png"
-
-  # spec.preserve_paths = "FilesToSave", "MoreFilesToSave"
-
+  spec.resources = "TDGooglePlacePicker/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -106,11 +102,16 @@ Pod para sustituir el GooglePlacePicker desde la version 3.0, implementa la ulti
   #  the lib prefix of their name.
   #
 
-  # spec.framework  = "SomeFramework"
-  # spec.frameworks = "SomeFramework", "AnotherFramework"
 
-  # spec.library   = "iconv"
-  # spec.libraries = "iconv", "xml2"
+  spec.framework = "UIKit"
+  spec.framework = "CoreLocation"
+  spec.dependency 'GoogleMaps', '~> 3.2'
+  spec.dependency 'GooglePlaces', '~> 3.2'
+  spec.dependency 'SwiftLocation', '~> 4.0'
+  spec.dependency 'Alamofire', '~> 4.7'
+  spec.dependency 'SwiftyJSON', '~> 5.0'
+
+  spec.swift_version = "5.0"
 
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
