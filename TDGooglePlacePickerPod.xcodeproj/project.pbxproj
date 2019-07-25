@@ -13,6 +13,7 @@
 		2C0739F422E7D8A500B20942 /* TDGooglePlace.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C0739EF22E7D8A500B20942 /* TDGooglePlace.storyboard */; };
 		2C0739F522E7D8A500B20942 /* PlaceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0739F022E7D8A500B20942 /* PlaceResponse.swift */; };
 		2C0739F622E7D8A500B20942 /* TDGooglePlacePickerConfig+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0739F122E7D8A500B20942 /* TDGooglePlacePickerConfig+Delegate.swift */; };
+		789CD61933861B3F99727098 /* Pods_TDGooglePlacePickerPod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCBA5AF53F42CF4EC45D7C3D /* Pods_TDGooglePlacePickerPod.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,9 @@
 		2C0739EF22E7D8A500B20942 /* TDGooglePlace.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TDGooglePlace.storyboard; sourceTree = "<group>"; };
 		2C0739F022E7D8A500B20942 /* PlaceResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceResponse.swift; sourceTree = "<group>"; };
 		2C0739F122E7D8A500B20942 /* TDGooglePlacePickerConfig+Delegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TDGooglePlacePickerConfig+Delegate.swift"; sourceTree = "<group>"; };
+		552541B3C38D8B6F61FC197F /* Pods-TDGooglePlacePickerPod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDGooglePlacePickerPod.release.xcconfig"; path = "Target Support Files/Pods-TDGooglePlacePickerPod/Pods-TDGooglePlacePickerPod.release.xcconfig"; sourceTree = "<group>"; };
+		E522AEBB24E4DA2AC2EA801B /* Pods-TDGooglePlacePickerPod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDGooglePlacePickerPod.debug.xcconfig"; path = "Target Support Files/Pods-TDGooglePlacePickerPod/Pods-TDGooglePlacePickerPod.debug.xcconfig"; sourceTree = "<group>"; };
+		FCBA5AF53F42CF4EC45D7C3D /* Pods_TDGooglePlacePickerPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TDGooglePlacePickerPod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				789CD61933861B3F99727098 /* Pods_TDGooglePlacePickerPod.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +48,7 @@
 				2C0739E422E7D72900B20942 /* TDGooglePlacePickerPod */,
 				2C0739E322E7D72900B20942 /* Products */,
 				C9F785BD468DD9E686A67C04 /* Pods */,
+				5477E9B2DA8E400B65E99E45 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,9 +82,19 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
+		5477E9B2DA8E400B65E99E45 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FCBA5AF53F42CF4EC45D7C3D /* Pods_TDGooglePlacePickerPod.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C9F785BD468DD9E686A67C04 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				E522AEBB24E4DA2AC2EA801B /* Pods-TDGooglePlacePickerPod.debug.xcconfig */,
+				552541B3C38D8B6F61FC197F /* Pods-TDGooglePlacePickerPod.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -101,10 +117,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C0739EA22E7D72900B20942 /* Build configuration list for PBXNativeTarget "TDGooglePlacePickerPod" */;
 			buildPhases = (
+				DAE898A4E8A4B12A211B4F12 /* [CP] Check Pods Manifest.lock */,
 				2C0739DD22E7D72900B20942 /* Headers */,
 				2C0739DE22E7D72900B20942 /* Sources */,
 				2C0739DF22E7D72900B20942 /* Frameworks */,
 				2C0739E022E7D72900B20942 /* Resources */,
+				14EB296635C613E741A7A304 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -157,6 +175,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		14EB296635C613E741A7A304 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TDGooglePlacePickerPod/Pods-TDGooglePlacePickerPod-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TDGooglePlacePickerPod/Pods-TDGooglePlacePickerPod-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TDGooglePlacePickerPod/Pods-TDGooglePlacePickerPod-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DAE898A4E8A4B12A211B4F12 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TDGooglePlacePickerPod-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2C0739DE22E7D72900B20942 /* Sources */ = {
@@ -297,6 +357,7 @@
 		};
 		2C0739EB22E7D72900B20942 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E522AEBB24E4DA2AC2EA801B /* Pods-TDGooglePlacePickerPod.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -324,6 +385,7 @@
 		};
 		2C0739EC22E7D72900B20942 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 552541B3C38D8B6F61FC197F /* Pods-TDGooglePlacePickerPod.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
