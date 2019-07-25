@@ -63,14 +63,14 @@
 		2C0739E422E7D72900B20942 /* TDGooglePlacePickerPod */ = {
 			isa = PBXGroup;
 			children = (
-				2C9749D322E9181E008229FE /* Source */,
+				2C9749D322E9181E008229FE /* Library */,
 				2C0739E522E7D72900B20942 /* TDGooglePlacePickerPod.h */,
 				2C0739E622E7D72900B20942 /* Info.plist */,
 			);
 			path = TDGooglePlacePickerPod;
 			sourceTree = "<group>";
 		};
-		2C9749D322E9181E008229FE /* Source */ = {
+		2C9749D322E9181E008229FE /* Library */ = {
 			isa = PBXGroup;
 			children = (
 				2C0739F122E7D8A500B20942 /* TDGooglePlacePickerConfig+Delegate.swift */,
@@ -79,7 +79,7 @@
 				2C0739F022E7D8A500B20942 /* PlaceResponse.swift */,
 				2C0739EE22E7D8A500B20942 /* TDGooglePlacePickerService.swift */,
 			);
-			path = Source;
+			path = Library;
 			sourceTree = "<group>";
 		};
 		5477E9B2DA8E400B65E99E45 /* Frameworks */ = {
