@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "TDGooglePlacePickerPod"
-  spec.version      = "0.2.0"
+  spec.version      = "0.3.0"
   spec.summary      = "Pod para sustituir el GooglePlacePicker desde la version 3.0"
 
   # This description is used to generate tags and improve search results.
@@ -69,7 +69,7 @@ Pod para sustituir el GooglePlacePicker desde la version 3.0, implementa la ulti
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "https://github.com/twelvedremers/TDGooglePlacePickerPod.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/twelvedremers/TDGooglePlacePickerPod.git" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
