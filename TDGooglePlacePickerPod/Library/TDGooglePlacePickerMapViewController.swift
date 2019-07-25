@@ -116,7 +116,7 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
         }
     }
     
-
+    
     //Events
     
     @IBAction func selectPlace(_ sender: Any) {
@@ -136,7 +136,7 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
         // Specify the place data types to return.
-          let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) | UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.coordinate.rawValue) | UInt(GMSPlaceField.formattedAddress.rawValue))!
+        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) | UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.coordinate.rawValue) | UInt(GMSPlaceField.formattedAddress.rawValue))!
         autocompleteController.placeFields = fields
         // Specify a filter.
         let filter = GMSAutocompleteFilter()

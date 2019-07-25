@@ -14,18 +14,18 @@ import SwiftLocation
 
 
 final public class TDGooglePlacePickerService {
-
+    
     //Global Variables
-    var mapKey: String!{
+    public var mapKey: String!{
         didSet{
             GMSPlacesClient.provideAPIKey(mapKey)
             GMSServices.provideAPIKey(mapKey)
         }
     }
     
-    var geocodeKey: String!
-    static var shared = TDGooglePlacePickerService()
-  
+    public var geocodeKey: String!
+    public static var shared = TDGooglePlacePickerService()
+    
     
     //Services
     
@@ -72,8 +72,8 @@ final public class TDGooglePlacePickerService {
                 }
                 let jsonValue = JSON(value)
                 guard let jsonResults = jsonValue["results"].arrayObject as? [[String: Any]] else {
-                        result(nil)
-                        return
+                    result(nil)
+                    return
                 }
                 let places = jsonResults.compactMap({ PlaceResponse(nearPlaceJson: $0) })
                 result(places)
@@ -121,5 +121,5 @@ final public class TDGooglePlacePickerService {
             }
         }
     }
-
+    
 }

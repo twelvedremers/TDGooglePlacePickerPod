@@ -39,8 +39,8 @@ public struct TDGooglePlacePickerConfig{
     var titleSerchTextUnableButton: String = "Selecciona una ubicación"
     var backButton: String = "Cancelar"
     var nearHeadertextTitle: String = "Sitios cercanos"
-
-    init(_ initialCoordenate: CLLocationCoordinate2D? = nil, zoom: Float = 15, isUsedCurrentLocation: Bool = true, seeNearbyPlace: Bool = true, country: String? = nil, fontTitle: UIFont = .boldSystemFont(ofSize: 22), fontText: UIFont = .systemFont(ofSize: 16), colorTitleBackgroundButton: UIColor = .red, colorTitleTextButton: UIColor = .white, titleNavigationButton: String = "Seleccione una ubicación", titleSerchTextButton: String = "Seleccionar ubicación", titleSerchTextUnableButton: String = "Selecciona una ubicación" , backButton: String = "Cancelar", nearHeadertextTitle: String = "Sitios cercanos") {
+    
+    public init(_ initialCoordenate: CLLocationCoordinate2D? = nil, zoom: Float = 15, isUsedCurrentLocation: Bool = true, seeNearbyPlace: Bool = true, country: String? = nil, fontTitle: UIFont = .boldSystemFont(ofSize: 22), fontText: UIFont = .systemFont(ofSize: 16), colorTitleBackgroundButton: UIColor = .red, colorTitleTextButton: UIColor = .white, titleNavigationButton: String = "Seleccione una ubicación", titleSerchTextButton: String = "Seleccionar ubicación", titleSerchTextUnableButton: String = "Selecciona una ubicación" , backButton: String = "Cancelar", nearHeadertextTitle: String = "Sitios cercanos") {
         
         self.initialCoordenate = initialCoordenate
         self.zoom = zoom
@@ -61,8 +61,8 @@ public struct TDGooglePlacePickerConfig{
 
 final public class TDGooglePlacePickerViewController{
     var config: TDGooglePlacePickerConfig
-    var delegate: TDGooglePlacePickerViewControllerDelegate?
-    init(with config: TDGooglePlacePickerConfig) {
+    public var delegate: TDGooglePlacePickerViewControllerDelegate?
+    public init(with config: TDGooglePlacePickerConfig) {
         self.config = config
     }
 }
@@ -70,13 +70,13 @@ final public class TDGooglePlacePickerViewController{
 
 // MARK: - Metodo utilitarios
 extension UIViewController{
-    func present(_ config: TDGooglePlacePickerViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+    public func present(_ config: TDGooglePlacePickerViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
         
         //Obtener View Controller
         guard let vc = UIStoryboard(name: "TDGooglePlace", bundle: nil).instantiateViewController(withIdentifier: "TDGooglePlacePickerMapViewController") as? TDGooglePlacePickerMapViewController else {
             return
         }
-    
+        
         // Configuracion inicial
         vc.delegate = config.delegate
         vc.pickerConfig = config.config
