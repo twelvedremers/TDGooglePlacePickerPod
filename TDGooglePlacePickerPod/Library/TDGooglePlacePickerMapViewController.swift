@@ -84,8 +84,8 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
     }
     
     private func formatTitle(with place: PlaceResponse) -> NSAttributedString{
-        let titleFontAtributtes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)]
-        let subtitleFontAtributtes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
+        let titleFontAtributtes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: pickerConfig.fontTitle]
+        let subtitleFontAtributtes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: pickerConfig.fontText]
         let attributedString = NSMutableAttributedString()
         
         if place.name != place.formatedAdress {

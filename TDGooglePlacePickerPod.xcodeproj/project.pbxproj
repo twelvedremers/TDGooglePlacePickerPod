@@ -13,7 +13,7 @@
 		2C0739F422E7D8A500B20942 /* TDGooglePlace.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C0739EF22E7D8A500B20942 /* TDGooglePlace.storyboard */; };
 		2C0739F522E7D8A500B20942 /* PlaceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0739F022E7D8A500B20942 /* PlaceResponse.swift */; };
 		2C0739F622E7D8A500B20942 /* TDGooglePlacePickerConfig+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0739F122E7D8A500B20942 /* TDGooglePlacePickerConfig+Delegate.swift */; };
-		789CD61933861B3F99727098 /* Pods_TDGooglePlacePickerPod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCBA5AF53F42CF4EC45D7C3D /* Pods_TDGooglePlacePickerPod.framework */; };
+		8FE363FD6A1E6F1A423C9CE9 /* libPods-TDGooglePlacePickerPod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 485C6636E8A4490C71D657BE /* libPods-TDGooglePlacePickerPod.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,9 +25,9 @@
 		2C0739EF22E7D8A500B20942 /* TDGooglePlace.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TDGooglePlace.storyboard; sourceTree = "<group>"; };
 		2C0739F022E7D8A500B20942 /* PlaceResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceResponse.swift; sourceTree = "<group>"; };
 		2C0739F122E7D8A500B20942 /* TDGooglePlacePickerConfig+Delegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TDGooglePlacePickerConfig+Delegate.swift"; sourceTree = "<group>"; };
+		485C6636E8A4490C71D657BE /* libPods-TDGooglePlacePickerPod.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TDGooglePlacePickerPod.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		552541B3C38D8B6F61FC197F /* Pods-TDGooglePlacePickerPod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDGooglePlacePickerPod.release.xcconfig"; path = "Target Support Files/Pods-TDGooglePlacePickerPod/Pods-TDGooglePlacePickerPod.release.xcconfig"; sourceTree = "<group>"; };
 		E522AEBB24E4DA2AC2EA801B /* Pods-TDGooglePlacePickerPod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDGooglePlacePickerPod.debug.xcconfig"; path = "Target Support Files/Pods-TDGooglePlacePickerPod/Pods-TDGooglePlacePickerPod.debug.xcconfig"; sourceTree = "<group>"; };
-		FCBA5AF53F42CF4EC45D7C3D /* Pods_TDGooglePlacePickerPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TDGooglePlacePickerPod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				789CD61933861B3F99727098 /* Pods_TDGooglePlacePickerPod.framework in Frameworks */,
+				8FE363FD6A1E6F1A423C9CE9 /* libPods-TDGooglePlacePickerPod.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,7 +85,7 @@
 		5477E9B2DA8E400B65E99E45 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FCBA5AF53F42CF4EC45D7C3D /* Pods_TDGooglePlacePickerPod.framework */,
+				485C6636E8A4490C71D657BE /* libPods-TDGooglePlacePickerPod.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
