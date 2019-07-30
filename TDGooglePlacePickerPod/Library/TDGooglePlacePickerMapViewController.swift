@@ -11,6 +11,7 @@ import GoogleMaps
 
 final public class TDGooglePlacePickerMapViewController: UIViewController {
     
+    @IBOutlet weak var actualLocationView: UIView!
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nearHeaderLabel: UILabel!
@@ -48,6 +49,9 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
     func loadNav(){
         self.navigationController?.title =  pickerConfig.titleNavigationButton
         self.navigationItem.leftBarButtonItem?.title = pickerConfig.backButton
+        if let backgroundColor = pickerConfig.resultBackgroundColor {
+            self.actualLocationView.backgroundColor = backgroundColor
+        }
     }
     
     func loadMap(){

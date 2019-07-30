@@ -34,13 +34,14 @@ public struct TDGooglePlacePickerConfig{
     var fontText: UIFont = .systemFont(ofSize: 16)
     var colorTitleBackgroundButton: UIColor = .red
     var colorTitleTextButton: UIColor = .white
+    var resultBackgroundColor: UIColor?
     var titleNavigationButton: String = "Seleccione una ubicación"
     var titleSerchTextButton: String = "Seleccionar ubicación"
     var titleSerchTextUnableButton: String = "Selecciona una ubicación"
     var backButton: String = "Cancelar"
     var nearHeadertextTitle: String = "Sitios cercanos"
     
-    public init(_ initialCoordenate: CLLocationCoordinate2D? = nil, zoom: Float = 15, isUsedCurrentLocation: Bool = true, seeNearbyPlace: Bool = true, country: String? = nil, fontTitle: UIFont = .boldSystemFont(ofSize: 22), fontText: UIFont = .systemFont(ofSize: 16), colorTitleBackgroundButton: UIColor = .red, colorTitleTextButton: UIColor = .white, titleNavigationButton: String = "Seleccione una ubicación", titleSerchTextButton: String = "Seleccionar ubicación", titleSerchTextUnableButton: String = "Selecciona una ubicación" , backButton: String = "Cancelar", nearHeadertextTitle: String = "Sitios cercanos") {
+    public init(_ initialCoordenate: CLLocationCoordinate2D? = nil, zoom: Float = 15, isUsedCurrentLocation: Bool = true, seeNearbyPlace: Bool = true, country: String? = nil, fontTitle: UIFont = .boldSystemFont(ofSize: 22), fontText: UIFont = .systemFont(ofSize: 16), colorTitleBackgroundButton: UIColor = .red, colorTitleTextButton: UIColor = .white, resultBackgroundColor: UIColor? = nil, titleNavigationButton: String = "Seleccione una ubicación", titleSerchTextButton: String = "Seleccionar ubicación", titleSerchTextUnableButton: String = "Selecciona una ubicación" , backButton: String = "Cancelar", nearHeadertextTitle: String = "Sitios cercanos") {
         
         self.initialCoordenate = initialCoordenate
         self.zoom = zoom
@@ -49,6 +50,7 @@ public struct TDGooglePlacePickerConfig{
         self.seeNearbyPlace = seeNearbyPlace
         self.fontTitle = fontTitle
         self.fontText = fontText
+        self.resultBackgroundColor = resultBackgroundColor
         self.colorTitleBackgroundButton = colorTitleBackgroundButton
         self.colorTitleTextButton = colorTitleTextButton
         self.titleNavigationButton = titleNavigationButton

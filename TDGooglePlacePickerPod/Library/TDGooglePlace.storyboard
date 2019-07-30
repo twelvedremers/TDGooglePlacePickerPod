@@ -32,7 +32,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.95825997652582151" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="vGo-11-QCx" secondAttribute="bottom" constant="8" id="Qvj-ll-Bj3"/>
                                     <constraint firstItem="vGo-11-QCx" firstAttribute="top" secondItem="9i7-bX-R15" secondAttribute="top" constant="8" id="Xe1-5J-DuB"/>
@@ -90,7 +90,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="G68-5d-khJ" firstAttribute="leading" secondItem="jQ3-S8-WEp" secondAttribute="leading" constant="5" id="4QY-Jo-yC2"/>
                                     <constraint firstItem="G68-5d-khJ" firstAttribute="centerX" secondItem="jQ3-S8-WEp" secondAttribute="centerX" id="6JU-uN-4Tk"/>
@@ -166,6 +166,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="actualLocationView" destination="jQ3-S8-WEp" id="SOa-7Y-BOz"/>
                         <outlet property="bottomSearchButtonView" destination="dr1-oN-vJ7" id="RNp-6G-6bQ"/>
                         <outlet property="distanceBetweenHeaderButton" destination="Iq6-Ad-OQR" id="enX-if-lPP"/>
                         <outlet property="loadingView" destination="qaP-md-4yG" id="a3D-ov-aG3"/>
