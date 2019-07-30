@@ -58,7 +58,7 @@ final public class TDGooglePlacePickerService {
             result(nil)
             return
         }
-        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(coordinates.latitude),\(coordinates.longitude)&radius=1500&key=\(apiKey)"
+        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(coordinates.latitude),\(coordinates.longitude)&&rankby=distance&key=\(apiKey)"
         
         let urlWithoutSpace = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? urlString
         Alamofire.request(urlWithoutSpace, method: .get, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
