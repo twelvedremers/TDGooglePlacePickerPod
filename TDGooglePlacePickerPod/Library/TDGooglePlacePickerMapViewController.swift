@@ -61,7 +61,7 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
         mapView?.setMinZoom(10, maxZoom: 18)
         myLocationButton.isHidden = !pickerConfig.isUsedCurrentLocation
         if let image = pickerConfig.currentLocationIcon {
-            myLocationButton.setImage(image, forState: .Normal)
+            myLocationButton.setImage(image, for: .normal)
         }
         if self.pickerConfig.zoom < mapView.minZoom{
             pickerConfig.zoom = mapView.minZoom
