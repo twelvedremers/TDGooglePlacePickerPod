@@ -50,7 +50,6 @@
                                 <color key="tintColor" red="0.72549019609999998" green="0.1764705882" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="myLocationEvent:" destination="Qfh-gh-iCs" eventType="touchUpInside" id="yrX-fM-0VD"/>
-                                    <action selector="selectPlace:" destination="Qfh-gh-iCs" eventType="touchUpInside" id="MWy-uh-HoE"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cug-4b-HtM">
