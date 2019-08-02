@@ -59,6 +59,7 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
         myLocationButton.layer.cornerRadius = 25
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
         mapView?.setMinZoom(10, maxZoom: 18)
+        myLocationButton.isHidden = !pickerConfig.isUsedCurrentLocation
         if let image = pickerConfig.currentLocationIcon {
             myLocationButton.setImage(image, forState: .Normal)
         }
