@@ -11,6 +11,7 @@ import GoogleMaps
 
 final public class TDGooglePlacePickerMapViewController: UIViewController {
     
+    @IBOutlet weak var myLocationButton: UIButton!
     @IBOutlet weak var actualLocationView: UIView!
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
@@ -55,8 +56,12 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
     }
     
     func loadMap(){
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0);
+        myLocationButton.layer.cornerRadius = 25
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
         mapView?.setMinZoom(10, maxZoom: 18)
+        if let image = pickerConfig.currentLocationIcon {
+            myLocationButton.setImage(image, forState: .Normal)
+        }
         if self.pickerConfig.zoom < mapView.minZoom{
             pickerConfig.zoom = mapView.minZoom
         } else if self.pickerConfig.zoom > mapView.maxZoom{
@@ -151,6 +156,15 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
         navigationController?.pushViewController(autocompleteController, animated: true)
     }
     
+    @IBAction func myLocationEvent(_ sender: Any) {
+        loadingView.startAnimating()
+        TDGooglePlacePickerService.getCoordenate(succesful: { coordenate in
+            let camera = GMSCameraPosition.camera(withLatitude: coordenate.latitude , longitude: coordenate.longitude, zoom: self.mapView?.camera.zoom ?? self.pickerConfig.zoom)
+            self.mapView?.animate(to: camera)
+            self.tapLocationEvent(coordenate)
+            self.loadingView.stopAnimating()
+        }){ _ in }
+    }
     
     fileprivate func addMarker(_ coordinate: CLLocationCoordinate2D?, name: String?){
         mapView.clear()
@@ -165,7 +179,7 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
     }
     
     fileprivate func tapLocationEvent(_ coordinate: CLLocationCoordinate2D){
-        let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude , longitude: coordinate.longitude, zoom: self.pickerConfig.zoom)
+        let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude , longitude: coordinate.longitude, zoom: self.mapView?.camera.zoom ?? self.pickerConfig.zoom)
         self.mapView?.animate(to: camera)
         self.addMarker(coordinate, name: "-")
         if pickerConfig.seeNearbyPlace{
@@ -196,7 +210,7 @@ extension TDGooglePlacePickerMapViewController: GMSMapViewDelegate{
     
     public func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
         TDGooglePlacePickerService.getCoordenate(succesful: { coordinate in
-            let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude , longitude: coordinate.longitude, zoom: self.pickerConfig.zoom)
+            let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude , longitude: coordinate.longitude, zoom: self.mapView?.camera.zoom ?? self.pickerConfig.zoom)
             self.mapView?.animate(to: camera)
         }){ _ in }
         return false

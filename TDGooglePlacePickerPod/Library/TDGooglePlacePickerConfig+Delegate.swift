@@ -23,6 +23,7 @@ public struct TDGooglePlacePickerConfig{
     /// nivel del zoom inicial del picker
     var zoom: Float = 15
     /// capacidad de usar la ubicacion actual
+    var currentLocationIcon: UIImage? = nil
     var isUsedCurrentLocation: Bool = true
     /// Solo permite seleccionar ubicaciones existente, si es falso, se utilizara el geocode en una ubicacion no conocida
     var seeNearbyPlace: Bool = true
@@ -41,7 +42,7 @@ public struct TDGooglePlacePickerConfig{
     var backButton: String = "Cancelar"
     var nearHeadertextTitle: String = "Sitios cercanos"
     
-    public init(_ initialCoordenate: CLLocationCoordinate2D? = nil, zoom: Float = 15, isUsedCurrentLocation: Bool = true, seeNearbyPlace: Bool = true, country: String? = nil, fontTitle: UIFont = .boldSystemFont(ofSize: 22), fontText: UIFont = .systemFont(ofSize: 16), colorTitleBackgroundButton: UIColor = .red, colorTitleTextButton: UIColor = .white, resultBackgroundColor: UIColor? = nil, titleNavigationButton: String = "Seleccione una ubicación", titleSerchTextButton: String = "Seleccionar ubicación", titleSerchTextUnableButton: String = "Selecciona una ubicación" , backButton: String = "Cancelar", nearHeadertextTitle: String = "Sitios cercanos") {
+    public init(_ initialCoordenate: CLLocationCoordinate2D? = nil, zoom: Float = 15, isUsedCurrentLocation: Bool = true, seeNearbyPlace: Bool = true, country: String? = nil, fontTitle: UIFont = .boldSystemFont(ofSize: 22), fontText: UIFont = .systemFont(ofSize: 16), colorTitleBackgroundButton: UIColor = .red, colorTitleTextButton: UIColor = .white, resultBackgroundColor: UIColor? = nil, titleNavigationButton: String = "Seleccione una ubicación", titleSerchTextButton: String = "Seleccionar ubicación", titleSerchTextUnableButton: String = "Selecciona una ubicación" , backButton: String = "Cancelar", nearHeadertextTitle: String = "Sitios cercanos", currentLocationIcon: UIImage? = nil) {
         
         self.initialCoordenate = initialCoordenate
         self.zoom = zoom
@@ -58,6 +59,7 @@ public struct TDGooglePlacePickerConfig{
         self.titleSerchTextUnableButton = titleSerchTextUnableButton
         self.backButton = backButton
         self.nearHeadertextTitle = nearHeadertextTitle
+        self.currentLocationIcon = currentLocationIcon
     }
 }
 
