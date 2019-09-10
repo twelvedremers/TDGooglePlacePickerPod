@@ -40,14 +40,16 @@
                                     <constraint firstAttribute="trailing" secondItem="vGo-11-QCx" secondAttribute="trailing" constant="5" id="mwD-zs-Q0j"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3bo-Bg-xyZ">
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3bo-Bg-xyZ">
                                 <rect key="frame" x="344" y="677" width="50" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="V3F-Jo-jsl"/>
                                     <constraint firstAttribute="height" constant="50" id="gsM-pC-VJ9"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="tintColor" red="0.72549019609999998" green="0.1764705882" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="current-location"/>
                                 <connections>
                                     <action selector="myLocationEvent:" destination="Qfh-gh-iCs" eventType="touchUpInside" id="yrX-fM-0VD"/>
                                 </connections>
@@ -198,4 +200,7 @@
             <point key="canvasLocation" x="1834.7826086956522" y="136.60714285714286"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="current-location" width="32" height="32"/>
+    </resources>
 </document>
