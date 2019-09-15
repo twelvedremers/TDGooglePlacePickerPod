@@ -167,16 +167,16 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
             seeNearbyplaces(from: coordinate)
         }
         loadingView.startAnimating()
-        TDGooglePlacePickerService.getLocationName(with: coordinate) { response in
-            self.selectedPlace = response
-            self.addMarker(response?.coordinate, name: response?.name)
-            self.loadingView.stopAnimating()
+        TDGooglePlacePickerService.getLocationName(with: coordinate) { [weak self] response in
+            self?.loadingView.stopAnimating()
+            self?.selectedPlace = response
+            self?.addMarker(response?.coordinate, name: response?.name)
         }
     }
     
     fileprivate func seeNearbyplaces(from coordinate: CLLocationCoordinate2D){
-        TDGooglePlacePickerService.getNearbyPlaces(with: coordinate) { response in
-            guard let response = response else {
+        TDGooglePlacePickerService.getNearbyPlaces(with: coordinate) { [weak self] response in
+            guard let response = response, let self = self else {
                 return
             }
             self.nearPlaceInCoordenate = response
@@ -207,8 +207,6 @@ extension TDGooglePlacePickerMapViewController: GMSMapViewDelegate{
             closeTableView()
         }
     }
-    
-    
 }
 
 // MARK: - Seccion del buscador
@@ -327,5 +325,10 @@ extension TDGooglePlacePickerMapViewController: CLLocationManagerDelegate {
         }
         self.tapLocationEvent(location.coordinate)
     }
+    
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
+    
 }
 

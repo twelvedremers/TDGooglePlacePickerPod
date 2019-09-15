@@ -13,6 +13,13 @@ import Alamofire
 
 final public class TDGooglePlacePickerService {
     
+    private static let manager: SessionManager = {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 15
+        configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
+        return Alamofire.SessionManager(configuration: configuration)
+    }()
+    
     //Global Variables
     public var mapKey: String!{
         didSet{
@@ -32,7 +39,7 @@ final public class TDGooglePlacePickerService {
         let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(coordinates.latitude),\(coordinates.longitude)&rankby=distance&key=\(apiKey)"
         
         let urlWithoutSpace = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? urlString
-        Alamofire.request(urlWithoutSpace, method: .get, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+        manager.request(urlWithoutSpace, method: .get, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
             switch response.result {
             //Successful request
             case .success(let value):
@@ -69,7 +76,7 @@ final public class TDGooglePlacePickerService {
         let urlString = "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(coordinates.latitude),\(coordinates.longitude)&key=\(apiKey)"
         
         let urlWithoutSpace = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? urlString
-        Alamofire.request(urlWithoutSpace, method: .get, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+        manager.request(urlWithoutSpace, method: .get, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
             switch response.result {
             //Successful request
             case .success(let value):
@@ -106,7 +113,7 @@ final public class TDGooglePlacePickerService {
         let urlString = "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(coordinates.latitude),\(coordinates.longitude)&key=\(apiKey)"
         
         let urlWithoutSpace = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? urlString
-        Alamofire.request(urlWithoutSpace, method: .get, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+        manager.request(urlWithoutSpace, method: .get, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
             switch response.result {
             //Successful request
             case .success(let value):
