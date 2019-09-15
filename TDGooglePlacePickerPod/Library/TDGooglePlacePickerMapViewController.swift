@@ -11,7 +11,6 @@ import GoogleMaps
 
 final public class TDGooglePlacePickerMapViewController: UIViewController {
     
-    @IBOutlet weak var myLocationButton: UIButton!
     @IBOutlet weak var actualLocationView: UIView!
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
@@ -23,10 +22,13 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var distanceBetweenHeaderButton: NSLayoutConstraint!
     
+    
     var delegate: TDGooglePlacePickerViewControllerDelegate?
+    let locationManager = CLLocationManager()
     var nearPlaceInCoordenate:[PlaceResponse] = []
     var isNearMenuOpen: Bool = false
     var pickerConfig: TDGooglePlacePickerConfig!
+    var currentLocation: CLLocation?
     var selectedPlace: PlaceResponse? {
         didSet{
             updateSelectedPlace()
@@ -56,13 +58,11 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
     }
     
     func loadMap(){
-        myLocationButton.layer.cornerRadius = 25
+        locationManager.delegate = self
+        mapView.isMyLocationEnabled = pickerConfig.isUsedCurrentLocation
+        mapView.settings.myLocationButton = pickerConfig.isUsedCurrentLocation
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
         mapView?.setMinZoom(10, maxZoom: 18)
-        myLocationButton.isHidden = !pickerConfig.isUsedCurrentLocation
-        if let image = pickerConfig.currentLocationIcon {
-            myLocationButton.setImage(image, for: .normal)
-        }
         if self.pickerConfig.zoom < mapView.minZoom{
             pickerConfig.zoom = mapView.minZoom
         } else if self.pickerConfig.zoom > mapView.maxZoom{
@@ -74,17 +74,7 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
         mapView?.settings.rotateGestures = false
         mapView?.isMyLocationEnabled = pickerConfig.isUsedCurrentLocation
         mapView?.delegate = self
-        if let coordenate = pickerConfig.initialCoordenate {
-            tapLocationEvent(coordenate)
-            return
-        }
-        loadingView.startAnimating()
-        TDGooglePlacePickerService.getCoordenate(succesful: { coordenate in
-            let camera = GMSCameraPosition.camera(withLatitude: coordenate.latitude , longitude: coordenate.longitude, zoom: self.pickerConfig.zoom)
-            self.mapView?.animate(to: camera)
-            self.tapLocationEvent(coordenate)
-            self.loadingView.stopAnimating()
-        }){ _ in }
+        locationManager.requestWhenInUseAuthorization()
     }
     
     func loadSearchButton(){
@@ -157,16 +147,6 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
         navigationController?.pushViewController(autocompleteController, animated: true)
     }
     
-    @IBAction func myLocationEvent(_ sender: Any) {
-        loadingView.startAnimating()
-        TDGooglePlacePickerService.getCoordenate(succesful: { coordenate in
-            let camera = GMSCameraPosition.camera(withLatitude: coordenate.latitude , longitude: coordenate.longitude, zoom: self.mapView?.camera.zoom ?? self.pickerConfig.zoom)
-            self.mapView?.animate(to: camera)
-            self.tapLocationEvent(coordenate)
-            self.loadingView.stopAnimating()
-        }){ _ in }
-    }
-    
     fileprivate func addMarker(_ coordinate: CLLocationCoordinate2D?, name: String?){
         mapView.clear()
         guard let name = name, let coordinate = coordinate else {
@@ -210,19 +190,16 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
 extension TDGooglePlacePickerMapViewController: GMSMapViewDelegate{
     
     public func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
-        TDGooglePlacePickerService.getCoordenate(succesful: { coordinate in
-            let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude , longitude: coordinate.longitude, zoom: self.mapView?.camera.zoom ?? self.pickerConfig.zoom)
-            self.mapView?.animate(to: camera)
-        }){ _ in }
+        guard let myLocation = mapView.myLocation else {
+            locationManager.requestLocation()
+            return false
+        }
+        tapLocationEvent(myLocation.coordinate)
         return false
     }
     
     public func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         tapLocationEvent(coordinate)
-    }
-    
-    public func mapView(_ mapView: GMSMapView, didTapMyLocation location: CLLocationCoordinate2D) {
-        print(location)
     }
     
     public func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
@@ -326,6 +303,29 @@ extension TDGooglePlacePickerMapViewController: UITableViewDataSource {
         cell.textLabel?.text = place.name
         cell.detailTextLabel?.text = place.formatedAdress
         return cell
+    }
+}
+extension TDGooglePlacePickerMapViewController: CLLocationManagerDelegate {
+    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        guard status == .authorizedWhenInUse || status == .authorizedAlways else {
+            mapView.isMyLocationEnabled = false
+            mapView.settings.myLocationButton = false
+            return
+        }
+        
+        if let coordenate = pickerConfig.initialCoordenate {
+            tapLocationEvent(coordenate)
+            return
+        }
+        locationManager.requestLocation()
+    }
+    
+    // 6
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else {
+            return
+        }
+        self.tapLocationEvent(location.coordinate)
     }
 }
 

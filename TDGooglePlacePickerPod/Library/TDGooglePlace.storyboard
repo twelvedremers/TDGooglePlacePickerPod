@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L0j-k1-yqH" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="44" width="414" height="728.5"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="693"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9i7-bX-R15" userLabel="header near location">
@@ -40,20 +40,6 @@
                                     <constraint firstAttribute="trailing" secondItem="vGo-11-QCx" secondAttribute="trailing" constant="5" id="mwD-zs-Q0j"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3bo-Bg-xyZ">
-                                <rect key="frame" x="344" y="677" width="50" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="V3F-Jo-jsl"/>
-                                    <constraint firstAttribute="height" constant="50" id="gsM-pC-VJ9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="tintColor" red="0.72549019609999998" green="0.1764705882" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="current-location"/>
-                                <connections>
-                                    <action selector="myLocationEvent:" destination="Qfh-gh-iCs" eventType="touchUpInside" id="yrX-fM-0VD"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cug-4b-HtM">
                                 <rect key="frame" x="0.0" y="772.5" width="414" height="0.0"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -135,14 +121,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Dcl-8X-YNH" firstAttribute="trailing" secondItem="3bo-Bg-xyZ" secondAttribute="trailing" constant="20" id="0ci-jp-MiL"/>
                             <constraint firstItem="9i7-bX-R15" firstAttribute="leading" secondItem="Dcl-8X-YNH" secondAttribute="leading" id="1FT-62-YcD"/>
                             <constraint firstItem="qaP-md-4yG" firstAttribute="centerX" secondItem="zUB-uR-yCf" secondAttribute="centerX" id="1PB-tD-jkR"/>
                             <constraint firstItem="Dcl-8X-YNH" firstAttribute="trailing" secondItem="cug-4b-HtM" secondAttribute="trailing" id="2Rs-ew-h1J"/>
                             <constraint firstAttribute="trailing" secondItem="dr1-oN-vJ7" secondAttribute="trailing" id="4O5-eK-YQc"/>
                             <constraint firstItem="cug-4b-HtM" firstAttribute="top" secondItem="9i7-bX-R15" secondAttribute="bottom" id="4s0-WK-vhm"/>
                             <constraint firstItem="Dcl-8X-YNH" firstAttribute="trailing" secondItem="mii-xN-L6j" secondAttribute="trailing" id="6Nr-QJ-Fnj"/>
-                            <constraint firstItem="mii-xN-L6j" firstAttribute="top" secondItem="L0j-k1-yqH" secondAttribute="bottom" id="C7z-Mk-LQt"/>
                             <constraint firstItem="jQ3-S8-WEp" firstAttribute="centerX" secondItem="zUB-uR-yCf" secondAttribute="centerX" id="CcZ-8F-PP1"/>
                             <constraint firstItem="Dcl-8X-YNH" firstAttribute="trailing" secondItem="jQ3-S8-WEp" secondAttribute="trailing" id="Cgp-eQ-rWn"/>
                             <constraint firstItem="dr1-oN-vJ7" firstAttribute="centerX" secondItem="zUB-uR-yCf" secondAttribute="centerX" id="IIf-Uy-bCK"/>
@@ -157,11 +141,11 @@
                             <constraint firstItem="dr1-oN-vJ7" firstAttribute="top" secondItem="mii-xN-L6j" secondAttribute="bottom" id="cdk-tT-mCZ"/>
                             <constraint firstItem="mii-xN-L6j" firstAttribute="top" secondItem="jQ3-S8-WEp" secondAttribute="bottom" id="eK6-tF-r5T"/>
                             <constraint firstItem="Dcl-8X-YNH" firstAttribute="trailing" secondItem="L0j-k1-yqH" secondAttribute="trailing" id="gpq-69-5Ot"/>
+                            <constraint firstItem="jQ3-S8-WEp" firstAttribute="top" secondItem="L0j-k1-yqH" secondAttribute="bottom" id="hFh-1u-gcW"/>
                             <constraint firstAttribute="bottom" secondItem="dr1-oN-vJ7" secondAttribute="bottom" id="i1k-te-gfn"/>
                             <constraint firstItem="dr1-oN-vJ7" firstAttribute="leading" secondItem="zUB-uR-yCf" secondAttribute="leading" id="pLD-1T-X0O"/>
                             <constraint firstItem="L0j-k1-yqH" firstAttribute="leading" secondItem="Dcl-8X-YNH" secondAttribute="leading" id="rKk-PH-Fdd"/>
                             <constraint firstItem="L0j-k1-yqH" firstAttribute="top" secondItem="Dcl-8X-YNH" secondAttribute="top" id="x9a-0N-O4B"/>
-                            <constraint firstItem="jQ3-S8-WEp" firstAttribute="top" secondItem="3bo-Bg-xyZ" secondAttribute="bottom" constant="10" id="y9x-eM-1jy"/>
                             <constraint firstItem="cug-4b-HtM" firstAttribute="leading" secondItem="Dcl-8X-YNH" secondAttribute="leading" id="yWr-ZY-cFb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dcl-8X-YNH"/>
@@ -187,7 +171,6 @@
                         <outlet property="distanceBetweenHeaderButton" destination="Iq6-Ad-OQR" id="enX-if-lPP"/>
                         <outlet property="loadingView" destination="qaP-md-4yG" id="a3D-ov-aG3"/>
                         <outlet property="mapView" destination="L0j-k1-yqH" id="ayf-y0-K5m"/>
-                        <outlet property="myLocationButton" destination="3bo-Bg-xyZ" id="NoI-3S-Ram"/>
                         <outlet property="nearHeaderLabel" destination="vGo-11-QCx" id="t2w-8O-sYH"/>
                         <outlet property="searchButton" destination="mii-xN-L6j" id="j5i-C1-cQc"/>
                         <outlet property="searchDetailButton" destination="Cmx-Yw-zWQ" id="uKi-Xv-T81"/>
@@ -200,7 +183,4 @@
             <point key="canvasLocation" x="1834.7826086956522" y="136.60714285714286"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="current-location" width="32" height="32"/>
-    </resources>
 </document>

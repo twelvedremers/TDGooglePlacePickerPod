@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "TDGooglePlacePickerPod"
-  spec.version      = "0.4.12"
+  spec.version      = "0.4.13"
   spec.summary      = "Pod para sustituir el GooglePlacePicker desde la version 3.0"
   spec.static_framework = true
 
@@ -127,7 +127,6 @@ SOFTWARE.
   spec.framework = "CoreLocation"
   spec.dependency 'GoogleMaps', '~> 3'
   spec.dependency 'GooglePlaces', '~> 3'
-  spec.dependency 'SwiftLocation', '~> 4'
   spec.dependency 'Alamofire', '~> 4'
   spec.dependency 'SwiftyJSON', '~> 5'
 
