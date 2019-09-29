@@ -4,8 +4,8 @@ platform :ios, '10.0'
 target 'TDGooglePlacePickerPod' do
   # Comment the next line if you don't want to use dynamic frameworks
   #use_frameworks!
-  pod 'GoogleMaps', '~> 3.2'
-  pod 'GooglePlaces', '~> 3.2'
+  pod 'GoogleMaps', '~> 3.4'
+  pod 'GooglePlaces', '~> 3.4'
   pod 'Alamofire', '~> 4.7'
   pod 'SwiftyJSON', '~> 5.0'
   # Pods for TDGooglePlacePickerPod

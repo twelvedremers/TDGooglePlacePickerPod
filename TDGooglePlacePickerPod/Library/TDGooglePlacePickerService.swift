@@ -31,7 +31,7 @@ final public class TDGooglePlacePickerService {
     public var geocodeKey: String!
     public static var shared = TDGooglePlacePickerService()
     
-    class func getNearbyPlaces(with coordinates: CLLocationCoordinate2D, result:@escaping ([PlaceResponse]?)->Void){
+    public class func getNearbyPlaces(with coordinates: CLLocationCoordinate2D, result:@escaping ([PlaceResponse]?)->Void){
         guard let apiKey = shared.geocodeKey else {
             result(nil)
             return
@@ -68,7 +68,7 @@ final public class TDGooglePlacePickerService {
     /// - Parameters:
     ///   - coordinates: cordenadas de una persona
     ///   - result: se retorna una tupla con el nombre y el place_id
-    class func getLocationName(with coordinates: CLLocationCoordinate2D , result: @escaping (PlaceResponse?)->Void){
+    public class func getLocationName(with coordinates: CLLocationCoordinate2D , result: @escaping (PlaceResponse?)->Void){
         guard let apiKey = shared.geocodeKey else {
             result(nil)
             return
@@ -105,7 +105,7 @@ final public class TDGooglePlacePickerService {
     /// - Parameters:
     ///   - coordinates: cordenadas de una persona
     ///   - result: se retorna una tupla con el nombre y el place_id
-    class func getLocationAproxName(with coordinates: CLLocationCoordinate2D , result:@escaping ([PlaceResponse]?)->Void){
+    public class func getLocationAproxName(with coordinates: CLLocationCoordinate2D , result:@escaping ([PlaceResponse]?)->Void){
         guard let apiKey = shared.geocodeKey else {
             result(nil)
             return
