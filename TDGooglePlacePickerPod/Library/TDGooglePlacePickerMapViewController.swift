@@ -214,6 +214,7 @@ extension TDGooglePlacePickerMapViewController: GMSAutocompleteViewControllerDel
     
     // Handle the user's selection.
     public func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        self.loadingView.stopAnimating()
         let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude , longitude: place.coordinate.longitude, zoom: pickerConfig.zoom)
         mapView?.animate(to: camera)
         selectedPlace = PlaceResponse(place: place)
