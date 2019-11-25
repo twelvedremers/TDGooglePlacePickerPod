@@ -6,7 +6,7 @@ target 'TDGooglePlacePickerPod' do
   #use_frameworks!
   pod 'GoogleMaps', '~> 3.4'
   pod 'GooglePlaces', '~> 3.4'
-  pod 'Alamofire', '~> 4.7'
+  pod 'Alamofire', '>= 4.7'
   pod 'SwiftyJSON', '~> 5.0'
   # Pods for TDGooglePlacePickerPod
 
