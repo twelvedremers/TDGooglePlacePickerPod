@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "TDGooglePlacePickerPod"
-  spec.version      = "0.5"
+  spec.version      = "0.6"
   spec.summary      = "Pod para sustituir el GooglePlacePicker desde la version 3.0"
   spec.static_framework = true
 
