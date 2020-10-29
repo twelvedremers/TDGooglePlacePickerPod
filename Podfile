@@ -9,6 +9,15 @@ target 'TDGooglePlacePickerPod' do
   pod 'Alamofire', '~> 4.7.3'
   pod 'SwiftyJSON', '~> 5.0.0'
   # Pods for TDGooglePlacePickerPod
+  
+  # Workaround for Cocoapods issue #7606
+  post_install do |installer|
+    installer.pods_project.targets.each do |t|
+        t.build_configurations.each do |config|
+          config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+        end
+    end
+    end
 
 end
 
