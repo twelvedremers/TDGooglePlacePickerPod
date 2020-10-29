@@ -62,12 +62,13 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
         mapView.isMyLocationEnabled = pickerConfig.isUsedCurrentLocation
         mapView.settings.myLocationButton = pickerConfig.isUsedCurrentLocation
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
-        mapView?.setMinZoom(10, maxZoom: 18)
+        mapView?.setMinZoom(Constants.minZoom, maxZoom: Constants.maxZoom)
         if self.pickerConfig.zoom < mapView.minZoom{
             pickerConfig.zoom = mapView.minZoom
         } else if self.pickerConfig.zoom > mapView.maxZoom{
             pickerConfig.zoom = mapView.maxZoom
         }
+        mapView?.animate(toZoom: pickerConfig.zoom)
         mapView?.settings.scrollGestures = true
         mapView?.settings.zoomGestures = true
         mapView?.settings.tiltGestures = true
@@ -167,10 +168,11 @@ final public class TDGooglePlacePickerMapViewController: UIViewController {
             seeNearbyplaces(from: coordinate)
         }
         loadingView.startAnimating()
-        TDGooglePlacePickerService.getLocationName(with: coordinate) { [weak self] response in
+        TDGooglePlacePickerService.getLocationAproxName(with: coordinate) { [weak self] response in
             self?.loadingView.stopAnimating()
-            self?.selectedPlace = response
-            self?.addMarker(response?.coordinate, name: response?.name)
+            self?.selectedPlace = response?.first
+            self?.selectedPlace?.coordinate = coordinate
+            self?.addMarker(self?.selectedPlace?.coordinate, name: self?.selectedPlace?.name)
         }
     }
     

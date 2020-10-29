@@ -16,12 +16,19 @@ public protocol TDGooglePlacePickerViewControllerDelegate {
     func placePicker(_ viewController: TDGooglePlacePickerMapViewController, didFailWithError error: Error)
 }
 
+public struct Constants {
+    public static let zoom: Float = 16
+    public static let minZoom: Float = 16
+    public static let maxZoom: Float = 20
+}
+
+
 // Datos de configuracion iniciales
 public struct TDGooglePlacePickerConfig{
     /// Ubicacion inicial del picker, en caso de estar vacio, se usara el del gps
     var initialCoordenate: CLLocationCoordinate2D?
     /// nivel del zoom inicial del picker
-    var zoom: Float = 15
+    var zoom: Float = Constants.zoom
     /// capacidad de usar la ubicacion actual
     var isUsedCurrentLocation: Bool = true
     /// Solo permite seleccionar ubicaciones existente, si es falso, se utilizara el geocode en una ubicacion no conocida
@@ -41,7 +48,7 @@ public struct TDGooglePlacePickerConfig{
     var backButton: String = "Cancelar"
     var nearHeadertextTitle: String = "Sitios cercanos"
     
-    public init(_ initialCoordenate: CLLocationCoordinate2D? = nil, zoom: Float = 15, isUsedCurrentLocation: Bool = true, seeNearbyPlace: Bool = true, country: String? = nil, fontTitle: UIFont = .boldSystemFont(ofSize: 22), fontText: UIFont = .systemFont(ofSize: 16), colorTitleBackgroundButton: UIColor = .red, colorTitleTextButton: UIColor = .white, resultBackgroundColor: UIColor? = nil, titleNavigationButton: String = "Seleccione una ubicación", titleSerchTextButton: String = "Seleccionar ubicación", titleSerchTextUnableButton: String = "Selecciona una ubicación" , backButton: String = "Cancelar", nearHeadertextTitle: String = "Sitios cercanos") {
+    public init(_ initialCoordenate: CLLocationCoordinate2D? = nil, zoom: Float = Constants.zoom, isUsedCurrentLocation: Bool = true, seeNearbyPlace: Bool = true, country: String? = nil, fontTitle: UIFont = .boldSystemFont(ofSize: 22), fontText: UIFont = .systemFont(ofSize: 16), colorTitleBackgroundButton: UIColor = .red, colorTitleTextButton: UIColor = .white, resultBackgroundColor: UIColor? = nil, titleNavigationButton: String = "Seleccione una ubicación", titleSerchTextButton: String = "Seleccionar ubicación", titleSerchTextUnableButton: String = "Selecciona una ubicación" , backButton: String = "Cancelar", nearHeadertextTitle: String = "Sitios cercanos") {
         
         self.initialCoordenate = initialCoordenate
         self.zoom = zoom

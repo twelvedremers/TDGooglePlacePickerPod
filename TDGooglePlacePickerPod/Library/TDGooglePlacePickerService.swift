@@ -62,42 +62,16 @@ final public class TDGooglePlacePickerService {
         }
     }
     
-    
-    /// Metodo para obtener el nombre y el place_id de un sitio en base a las cordenadas
+    /// Metodo para obtener el nombre y el place_id del sitio mas cercano dado un punto, y el cual no es una calle
     ///
     /// - Parameters:
     ///   - coordinates: cordenadas de una persona
     ///   - result: se retorna una tupla con el nombre y el place_id
-    public class func getLocationName(with coordinates: CLLocationCoordinate2D , result: @escaping (PlaceResponse?)->Void){
-        guard let apiKey = shared.geocodeKey else {
-            result(nil)
-            return
+    public class func getRecomendedPlace(with coordinates: CLLocationCoordinate2D , result:@escaping (PlaceResponse?)->Void) {
+        getLocationAproxName(with: coordinates) { places in
+            result(places?.first)
         }
-        let urlString = "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(coordinates.latitude),\(coordinates.longitude)&key=\(apiKey)"
         
-        let urlWithoutSpace = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? urlString
-        manager.request(urlWithoutSpace, method: .get, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
-            switch response.result {
-            //Successful request
-            case .success(let value):
-                //Validate that the request was OK
-                guard let code = response.response?.statusCode, 200 ... 299 ~= code else{
-                    result(nil)
-                    return
-                }
-                let jsonValue = JSON(value)
-                guard let jsonResults = jsonValue["results"].arrayObject as? [[String: Any]] else {
-                    result(nil)
-                    return
-                }
-                var places = jsonResults.compactMap({ PlaceResponse(reverseGeocodeJson: $0)}).first
-                places?.coordinate = coordinates
-                result(places)
-            //Request denied by connection
-            case .failure:
-                result(nil)
-            }
-        }
     }
     
     /// Metodo para obtener el nombre y el place_id de los sitio mas cercanos aproxumados a las cordenadas

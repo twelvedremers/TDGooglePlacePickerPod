@@ -15,6 +15,8 @@ public struct PlaceResponse {
     public var name: String
     public var formatedAdress: String = ""
     public var coordinate: CLLocationCoordinate2D
+    public var components: [[String: Any]] = []
+    public var types: [String] = []
     
     init(with id: String, coordinate: CLLocationCoordinate2D, name: String?  = "", formatedAdress: String?) {
         self.placeId = id
@@ -24,9 +26,7 @@ public struct PlaceResponse {
     }
     
     init?(with id: String?, coordinate: CLLocationCoordinate2D, name: String?  = "", formatedAdress: String?) {
-        guard let id = id else {
-            return nil
-        }
+        guard let id = id else { return nil }
         self.placeId = id
         self.coordinate = coordinate
         self.name = name ?? formatedAdress ?? "\(coordinate.latitude) - \(coordinate.longitude)"
@@ -62,8 +62,33 @@ public struct PlaceResponse {
         }
         
         self.placeId = placeId
+        self.components = json["address_components"].arrayObject as? [[String: Any]] ?? []
+        self.types = json["types"].arrayObject as? [String] ?? []
         self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        self.name = json["display_name"].string ?? json["formatted_address"].string ?? "\(latitude) - \(longitude)"
-        self.formatedAdress = json["formatted_address"].string ?? json["display_name"].string ?? "\(latitude) - \(longitude)"
+        self.name = PlaceResponse.getCurrentName(with: json["address_components"].arrayValue) ?? json["display_name"].string ?? json["formatted_address"].string ?? "\(latitude) - \(longitude)"
+        self.formatedAdress = PlaceResponse.getFormattedName(with: json["address_components"].arrayValue) ?? json["formatted_address"].string ?? json["display_name"].string ?? "\(latitude) - \(longitude)"
+    }
+    
+    private static func getCurrentName(with components: [JSON]) -> String? {
+        return components.first?["short_name"].string
+    }
+    
+    private static func getFormattedName(with components: [JSON]) -> String? {
+        var base = components.first?["short_name"].string ?? ""
+        let sublocality = components.first(where: { json -> Bool in
+            let types = json["types"].arrayObject as? [String]
+            return types?.contains("sublocality") ?? false
+        })
+        let locality = components.first(where: { json -> Bool in
+            let types = json["types"].arrayObject as? [String]
+            return types?.contains("locality") ?? false
+        })
+        if  let sublocality = sublocality {
+            base = base.isEmpty ? sublocality["long_name"].stringValue : base + ", " + sublocality["long_name"].stringValue
+        }
+        if  let locality = locality {
+            base = base.isEmpty ? locality["long_name"].stringValue : base + ", " + locality["long_name"].stringValue
+        }
+        return base.isEmpty ? nil : base
     }
 }
